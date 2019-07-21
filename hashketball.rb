@@ -57,10 +57,10 @@ end
 def team_colors(team_name)
   color = game_hash
   color.each do |team, jersy|
+    if jersy[:team_name] == team_name
     jersy.each do |color, team_color|
-      if team_color == team_name
-        return team_color[:colors]
-          end
+      if color == :colors
+        return team_color
         end
       end
     end
@@ -68,16 +68,48 @@ def team_colors(team_name)
 end
 
 def team_names
-  
+  home_away = []
+  team = game_hash
+  team.each do |ha, team_name|
+    team_name.each do |name, x|
+      if name == :team_name
+        home_away.push(x) 
+    end
+   end
+  end
+  return home_away
 end
 
-def player_numbers
-  
+def player_numbers(team_name)
+  num = []
+  jersey = game_hash
+  jersey.each do |home_away, info|
+    if info[:team_name] == team_name
+    info.each do |players, number|
+      if players == :players
+        number.each do |name|
+          name.each do |number, x|
+            x.each do |jersy_number|
+            
+            if number == :number
+              binding.pry
+              num.push(x)
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+  return num
 end
+#get down to the jersy numbers and put them into an array
 
 def player_stats
   
 end
+
 
 def big_shoe_rebounds
   
